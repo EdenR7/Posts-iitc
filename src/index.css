@@ -1,0 +1,118 @@
+@import url(reset.css);
+:root {
+  --clr-primary-150: hsl(48, 100%, 95%);
+  --clr-primary-300: hsl(22, 100%, 70%);
+  --clr-primary-500: hsl(22, 100%, 50%);
+  --clr-primary-800: hsl(223, 100%, 24%);
+
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-neutral-150: hsl(0, 0%, 90%);
+  --clr-neutral-200: hsl(0, 0%, 85%);
+  --clr-neutral-400: hsl(0, 0%, 60%);
+  --clr-neutral-800: hsl(0, 0%, 15%);
+}
+html,
+body {
+  height: 100vh;
+  width: 100%;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--clr-primary-150);
+  padding: 1rem;
+  color: var(--clr-neutral-800);
+}
+input,
+textarea {
+  /* background-color: var(--clr-neutral-100); */
+  /* color: var(--clr-primary-800); */
+  border: 1px solid var(--clr-primary-700);
+  padding-block: 0.3rem;
+  padding-inline: 0.5rem;
+  border-radius: 4px;
+  outline: none;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+  color: var(--clr-primary-800);
+}
+/* UTILS */
+.btn {
+  position: relative;
+  /* background-color: var(--clr-primary-700); */
+  /* color: var(--clr-primary-150); */
+  cursor: pointer;
+  border: 0;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  padding-inline: 0.75rem;
+  padding-block: 0.5rem;
+}
+.btn:hover {
+  transform: scale(1.1);
+  /* background-color: var(--clr-primary-800); */
+}
+/* POSTS */
+#posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.post {
+  border: 1px solid var(--clr-primary-800);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.post-header__username {
+  font-weight: normal;
+  color: var(--clr-primary-500);
+}
+.post-body__title {
+  font-size: 1.05rem;
+}
+.post-body__title-body {
+  padding-inline: 0.25rem;
+}
+
+.post-reactions {
+  display: flex;
+  padding-inline: 1rem;
+  gap: 1rem;
+  justify-content: end;
+  color: var(--clr-primary-800);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.post-reaction__likes {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.post-reaction__comments {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.post-footer {
+  padding-inline: 1rem;
+
+  font-size: 0.75rem;
+}
+.post-footer__created {
+  justify-content: end;
+  display: flex;
+  gap: 0.25rem;
+}
