@@ -6,8 +6,23 @@ export async function matchUsernametoId(id) {
   try {
     const { data } = await axios.get(USERS_URL + id);
     return data.username;
-    // console.log(data);
   } catch (error) {
     throw error;
+  }
+}
+
+export async function addNewPost(post) {
+  try {
+    axios.post(POSTS_URL, post);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function updatePostByPatch(reqBody, id) {
+  try {
+    await axios.patch(POSTS_URL + id, reqBody);
+  } catch (err) {
+    throw err;
   }
 }

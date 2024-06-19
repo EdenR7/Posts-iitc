@@ -1,41 +1,38 @@
-import React, { useState } from "react";
-import { addNewPost } from "../utils/utilsCrud";
-import { getCurrentDateTime } from "../utils/utilsFunc";
+import React, { useEffect, useState } from "react";
+import {  getCurrentDateTime } from "../../utils/utilsFunc";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CommentIcon from "@mui/icons-material/Comment";
+import { updatePostByPatch } from "../../utils/utilsCrud";
 
-function CreatePostPage() {
-  const [newPost, setNewPost] = useState({
-    title: "",
-    body: "",
-    userId: "9b5b7206-0ddf-4fda-850b-58822e33383c",
-    reactions: {
-      likes: 0,
-    },
-    comments: [],
-    createdAt: "",
-    updatedAt: "",
-  });
+const POSTS_URL = "http://localhost:8001/posts/";
 
+export function EditPost(props) {
+  const { editPost, toggleValue, setEditPost } = props;
   return (
-    <div id="create-post-wrrapper">
+    <div className="edit-post-details">
       <form
         id="create-post-form"
         onSubmit={async (ev) => {
-          ev.preventDefault();
-          addNewPost({
-            ...newPost,
-            createdAt: getCurrentDateTime(),
-            updatedAt: getCurrentDateTime(),
-          });
+          try {
+            ev.preventDefault();
+            await updatePostByPatch(
+              { ...editPost, updatedAt: getCurrentDateTime() },
+              editPost.id
+            );
+            toggleValue(false);
+          } catch (err) {
+            throw err;
+          }
         }}
       >
         <div className="create-group">
           <label htmlFor="create-post-title">Title</label>
-          <input
-            value={newPost.title}
+          <textarea
+            value={editPost.title}
             type="text"
             id="create-post-title"
             onChange={(ev) => {
-              setNewPost((prev) => {
+              setEditPost((prev) => {
                 return {
                   ...prev,
                   title: ev.target.value,
@@ -48,11 +45,11 @@ function CreatePostPage() {
         <div className="create-group">
           <label htmlFor="create-post-body">Post Content</label>
           <textarea
-            value={newPost.body}
+            value={editPost.body}
             type="text"
             id="create-post-body"
             onChange={(ev) => {
-              setNewPost((prev) => {
+              setEditPost((prev) => {
                 return {
                   ...prev,
                   body: ev.target.value,
@@ -70,5 +67,3 @@ function CreatePostPage() {
     </div>
   );
 }
-
-export default CreatePostPage;
